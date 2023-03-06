@@ -1,5 +1,6 @@
+import Product from "../Components/Product/Product";
+import ProductSales from "../Components/Product/ProductSales";
 import App from "../Components/Slider/App";
-import { EpicIcon, OriginIcon, SteamIcon } from "../Icons/Icons";
 
 const MainPage = () => {
   return (
@@ -30,28 +31,47 @@ const MainPage = () => {
                   <line x1="21" y1="21" x2="15" y2="15" />
                 </svg>
               </div>
-              <input type="text" placeholder="Поиск по названию"/>
+              <input type="text" placeholder="Поиск по названию" />
             </div>
           </div>
 
           <div className="products">
-              <div className="product">
-                  <div className="prodImage">
-                      <img src="" alt="" />
-                  </div>
-                  <span className="prod-title"></span>
-                  <div className="prod-icons">
-                      <OriginIcon />
-                      <EpicIcon />
-                      <SteamIcon />
-                  </div>
-                  <div className="price-button">
-                      <span className="price"></span>
-                      <button>В корзину</button>
-                  </div>
-              </div>
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
           </div>
         </div>
+      </div>
+
+      <div className="sales">
+        <div className="wrapper">
+          <h1 className="mb65">Скидки недели</h1>
+          <div className="sales-products">
+            <Product sale={"sale"} />
+            <Product sale={"sale"} />
+            <Product sale={"sale"} />
+            <Product sale={"sale"} />
+          </div>
+        </div>
+      </div>
+
+      <div className="distribution">
+        <span className="title">Будь в курсе всех акций</span>
+        <span className="subtitle">Подпишись на электроннаую рассылку и узнавай об акциях заранее</span>
+        <div className="field">
+          <input type="text" />
+          <button className="button">Подписаться</button>
+        </div>
+
+        <span className="oferta">
+          Нажимая на кнопку «Подписаться», вы соглашаетесь с офертой и политикой
+          конфиденциальности
+        </span>
       </div>
     </div>
   );
