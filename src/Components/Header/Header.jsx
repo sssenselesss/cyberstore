@@ -1,7 +1,12 @@
+import { useContext } from "react"
+import { ModalContext } from "../../pages/Root"
 import Logo from "./Logo"
 
 
 const Header = () =>{
+
+    const {toggleModal} = useContext(ModalContext);
+
     return (
         <header className="header">
             <div className="wrapper">
@@ -23,7 +28,9 @@ const Header = () =>{
                         <a href="">Гарантии</a>
                     </li>
                     <li>
-                        <a href="">Корзина</a>
+                        
+                        
+                        <span  onClick={toggleModal} href="">Корзина</span>
                     </li>
                     <li>
                         <a href="">Профиль</a>
