@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import Product from "../Components/Product/Product";
 import ProductSales from "../Components/Product/ProductSales";
 import App from "../Components/Slider/App";
+import PRODUCTS from "../data/products";
 
 const MainPage = () => {
+  const [products, setProducts] = useState(PRODUCTS);
+  const [query, setQuery] = useState("");
+
+  const discontProducts = PRODUCTS.filter((item) => item.sale !== null)
+
+  const onChangeQuery = (e) => {
+    setQuery(e.target.value.toLowerCase());
+  };
+
+  const filteredProducts = products.filter((item) =>
+    item.title.toLowerCase().includes(query)
+  );
+  console.log(filteredProducts);
+
   return (
     <div className="main">
       <div className="slider">
@@ -31,19 +47,23 @@ const MainPage = () => {
                   <line x1="21" y1="21" x2="15" y2="15" />
                 </svg>
               </div>
-              <input type="text" placeholder="Поиск по названию" />
+              <input
+                type="text"
+                placeholder="Поиск по названию"
+                onChange={(e) => onChangeQuery(e)}
+                value={query}
+              />
             </div>
           </div>
 
           <div className="products">
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+            {filteredProducts.length ? (
+              filteredProducts.map((prod) => {
+                return <Product prod={prod} />;
+              })
+            ) : (
+              <h2 className="nothing">По вашему запросу "{query}" ничего не найдено </h2>
+            )}
           </div>
         </div>
       </div>
@@ -52,17 +72,18 @@ const MainPage = () => {
         <div className="wrapper">
           <h1 className="mb65">Скидки недели</h1>
           <div className="sales-products">
-            <Product sale={"sale"} />
-            <Product sale={"sale"} />
-            <Product sale={"sale"} />
-            <Product sale={"sale"} />
+              {discontProducts.map((prod) =>{
+                return <Product prod={prod}/>
+              })}
           </div>
         </div>
       </div>
 
       <div className="distribution">
         <span className="title">Будь в курсе всех акций</span>
-        <span className="subtitle">Подпишись на электроннаую рассылку и узнавай об акциях заранее</span>
+        <span className="subtitle">
+          Подпишись на электроннаую рассылку и узнавай об акциях заранее
+        </span>
         <div className="field">
           <input type="text" />
           <button className="button">Подписаться</button>
