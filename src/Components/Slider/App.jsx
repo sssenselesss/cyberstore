@@ -7,12 +7,15 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-
-
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper";
+import PRODUCTS from "../../data/products";
+import PriceWithDiscount from "../../utils/PriceWithDiscount";
+import FormatPercent from "../../utils/FormatPercent";
 
 export default function App() {
+  const [slider, setSlider] = useState(PRODUCTS);
+
   return (
     <>
       <Swiper
@@ -31,33 +34,24 @@ export default function App() {
         modules={[EffectCoverflow, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
+        {slider.map((slide) => {
+          return (
+            <SwiperSlide>
+              <img src={slide.image} />
+              <div className="slider-text">
+                <h3>{slide.title}</h3>
+                <div className="wrapper">
+                  <div className="slider-sale">
+                    {FormatPercent(slide.sale)}
+                  </div>
+                  <div className="slider-price">
+                    {PriceWithDiscount(slide.price, slide.sale)} ₽{" "}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

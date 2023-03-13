@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { json } from "react-router-dom";
 import Product from "../Components/Product/Product";
 import ProductSales from "../Components/Product/ProductSales";
 import App from "../Components/Slider/App";
@@ -8,7 +9,7 @@ const MainPage = () => {
   const [products, setProducts] = useState(PRODUCTS);
   const [query, setQuery] = useState("");
 
-  const discontProducts = PRODUCTS.filter((item) => item.sale !== null)
+  const discontProducts = PRODUCTS.filter((item) => item.sale !== null);
 
   const onChangeQuery = (e) => {
     setQuery(e.target.value.toLowerCase());
@@ -18,6 +19,8 @@ const MainPage = () => {
     item.title.toLowerCase().includes(query)
   );
   console.log(filteredProducts);
+
+  
 
   return (
     <div className="main">
@@ -32,15 +35,15 @@ const MainPage = () => {
               <div className="icon-search">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-search"
+                  className="icon icon-tabler icon-tabler-search"
                   width="44"
                   height="44"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="#2c3e50"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <circle cx="10" cy="10" r="7" />
@@ -59,10 +62,12 @@ const MainPage = () => {
           <div className="products">
             {filteredProducts.length ? (
               filteredProducts.map((prod) => {
-                return <Product prod={prod} />;
+                return <Product key={prod.id} prod={prod} />;
               })
             ) : (
-              <h2 className="nothing">По вашему запросу "{query}" ничего не найдено </h2>
+              <h2 className="nothing">
+                По вашему запросу "{query}" ничего не найдено{" "}
+              </h2>
             )}
           </div>
         </div>
@@ -72,9 +77,9 @@ const MainPage = () => {
         <div className="wrapper">
           <h1 className="mb65">Скидки недели</h1>
           <div className="sales-products">
-              {discontProducts.map((prod) =>{
-                return <Product prod={prod}/>
-              })}
+            {discontProducts.map((prod) => {
+              return <Product key={prod.id} prod={prod} />;
+            })}
           </div>
         </div>
       </div>

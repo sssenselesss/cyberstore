@@ -5,7 +5,7 @@ const useCart = (initialValue = [], key = "cart") => {
   const [cartItems, setCartItems] = useState(initialValue);
 
   const addToCart = (item) =>
-    setCartItems((prev) => [...prev, { ...item, id: Date.now() }]);
+    setCartItems((prev) => [...prev, { ...item, id: item.id, isCart:true }]);
 
   const removeCartItemById = (id) =>
     setCartItems((prev) => {
