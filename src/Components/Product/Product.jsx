@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { EpicIcon, OriginIcon, SteamIcon } from "../../Icons/Icons";
-import FormatMoney from "../../utils/FormatMoney";
+import { CartContext } from "../../pages/Root";
 import FormatPercent from "../../utils/FormatPercent";
 import PriceWithDiscount from "../../utils/PriceWithDiscount";
 
 const Product = (props) => {
+
+  const {addToCart} = useContext(CartContext)
+
 
   let path = '/products/' + props.prod.id;
   return (
@@ -31,9 +35,9 @@ const Product = (props) => {
       <div className="price-button">
         <span className="price">
 
-        {PriceWithDiscount(props.prod.price,props.prod.sale)}
+        {PriceWithDiscount(props.prod.price,props.prod.sale) } ₽. 
            </span>
-        <button className="button">В корзину</button>
+        <button className="button" onClick={addToCart.bind(this,props.prod)}>В корзину</button>
       </div>
     </div>
   );

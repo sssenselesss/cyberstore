@@ -15,7 +15,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
-ul{
+ul {
   list-style: none;
 }
 .header {
@@ -369,42 +369,42 @@ body {
       text-align: justify;
     }
 
-    .discription-lower{
+    .discription-lower {
       margin-top: 65px;
       display: flex;
       justify-content: space-between;
       gap: 35px;
-      .discription{
+      .discription {
         padding: 30px;
         background-color: #2b2a2a;
         color: white;
 
-        .disc-ul{
+        .disc-ul {
           display: flex;
           flex-direction: column;
           gap: 10px;
           font-size: 16px;
         }
 
-        .grey{
+        .grey {
           color: #9f9f9f;
         }
       }
 
-      .price-button{
+      .price-button {
         display: flex;
         flex-direction: column;
         gap: 18px;
         justify-content: flex-end;
         align-items: flex-end;
 
-        .price-sale{
+        .price-sale {
           display: flex;
           gap: 16px;
           font-size: 24px;
           align-items: center;
 
-          .percent{
+          .percent {
             padding: 10px;
             background-color: #ffbf33;
             font-size: 20px;
@@ -413,10 +413,10 @@ body {
           }
         }
 
-        .prodPage-button{
-         width: 240px;
-         height: 48px;
-         border-radius: 4px;
+        .prodPage-button {
+          width: 240px;
+          height: 48px;
+          border-radius: 4px;
           background-color: #ffbf33;
           font-size: 20px;
           border: none;
@@ -427,79 +427,107 @@ body {
   }
 }
 
-.overlay{
-
+.overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 
   z-index: 10;
-  &.active{
+  &.active {
     display: block;
   }
 }
 
-.modal{
+.modal {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   display: grid;
-  grid-template-rows: 0.3fr 4.7fr 1fr;
+  grid-template-rows: 0.6fr 4.75fr 1fr;
 
   background-color: #fff;
   padding: 32px;
-  
-  min-width: 15vw;
 
-.modal-body{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: 450px;
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+   
+    gap: 20px;
+    overflow: scroll;
+  }
+  .modal-header{
+    font-size: 24px;
+    font-weight: 700;
+    align-self: center;
+  }
+  .modal-footer {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+    .total-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .total {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .price {
+        font-size: 20px;
+      }
+    }
+    .button{
+      height: 40px;
+      font-size: 16px;
+    }
+  }
 }
 
-}
-
-.modal-product{
+.modal-product {
   display: flex;
   gap: 10px;
 
-  &-image{
+  &-image {
     width: 100px;
     height: 130px;
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
 
-  .discription-modal{
+  .discription-modal {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .modal-text{
+    .modal-text {
       display: flex;
       flex-direction: column;
       gap: 10px;
       font-size: 18px;
       font-weight: 600;
 
-      .cart-title{
+      .cart-title {
         width: 220px;
         max-height: 80px;
         white-space: wrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
       }
     }
   }
 }
-.products .nothing{
+.products .nothing {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -507,4 +535,3 @@ body {
   text-align: center;
   align-self: center;
 }
-

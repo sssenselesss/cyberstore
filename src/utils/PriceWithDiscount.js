@@ -7,7 +7,7 @@ const PriceWithDiscount = (price,discount) =>{
     const discountValue = price/100 * discount;
 
     const newPrice = price - discountValue;
-    return FormatMoney(newPrice)
+    return  Math.round(newPrice)
     
     
 }

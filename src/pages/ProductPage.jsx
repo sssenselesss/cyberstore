@@ -63,7 +63,7 @@ const ProductPage = () => {
           </div>
           <div className="price-button">
             <div className="price-sale">
-              <span className="price"> {PriceWithDiscount(prod.price,prod.sale)} </span>
+              <span className="price"> {PriceWithDiscount(prod.price,prod.sale)} ₽.  </span>
               <div className="percent">{FormatPercent(prod.sale)}</div>
             </div>
             <button className=" prodPage-button">В корзину</button>

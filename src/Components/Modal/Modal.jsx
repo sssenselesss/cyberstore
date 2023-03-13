@@ -1,8 +1,16 @@
 import { useContext, useRef } from "react";
-import { ModalContext } from "../../pages/Root";
+import { CartContext, ModalContext } from "../../pages/Root";
+import FormatMoney from "../../utils/FormatMoney";
+import TotalCart from "../../utils/TotalCart";
+import CartItem from "../CartItem/CartItem";
 
 const Modal = () => {
   const { modal, toggleModal } = useContext(ModalContext);
+
+  const cart = useContext(CartContext);
+
+  const total = TotalCart(cart.cartItems);
+  
 
   const overlayRef = useRef();
 
@@ -20,84 +28,21 @@ const Modal = () => {
     >
       <div className="modal">
         <header className="modal-header">
-          <h2>Корзина</h2>
+          <span>Корзина</span>
         </header>
 
         <div className="modal-body">
-          <div className="modal-product">
-            <div className="modal-product-image">
-              <img
-                src="https://i.playground.ru/p/WwocQXfjHLkOjaHg-URU0g.jpeg"
-                alt=""
-              />
-            </div>
-
-            <div className="discription-modal">
-              <div className="modal-text">
-                <span className="cart-title">The Witcher III: Wild Hunt </span>
-                <span className="cart-price">2 202 ₽ </span>
-              </div>
-
-              <button className="button">Удалить</button>
-            </div>
-          </div>
-          <div className="modal-product">
-            <div className="modal-product-image">
-              <img
-                src="https://i.playground.ru/p/WwocQXfjHLkOjaHg-URU0g.jpeg"
-                alt=""
-              />
-            </div>
-
-            <div className="discription-modal">
-              <div className="modal-text">
-                <span className="cart-title">The Witcher III: Wild Hunt </span>
-                <span className="cart-price">2 202 ₽ </span>
-              </div>
-
-              <button className="button">Удалить</button>
-            </div>
-          </div>
-          <div className="modal-product">
-            <div className="modal-product-image">
-              <img
-                src="https://i.playground.ru/p/WwocQXfjHLkOjaHg-URU0g.jpeg"
-                alt=""
-              />
-            </div>
-
-            <div className="discription-modal">
-              <div className="modal-text">
-                <span className="cart-title">The Witcher III: Wild Hunt </span>
-                <span className="cart-price">2 202 ₽ </span>
-              </div>
-
-              <button className="button">Удалить</button>
-            </div>
-          </div>
-          <div className="modal-product">
-            <div className="modal-product-image">
-              <img
-                src="https://i.playground.ru/p/WwocQXfjHLkOjaHg-URU0g.jpeg"
-                alt=""
-              />
-            </div>
-
-            <div className="discription-modal">
-              <div className="modal-text">
-                <span className="cart-title">The Witcher III: Wild Hunt </span>
-                <span className="cart-price">2 202 ₽ </span>
-              </div>
-
-              <button className="button">Удалить</button>
-            </div>
-          </div>
+         
+          {cart.cartItems.map((item) =>{
+            return <CartItem key={item.id} item={item} />
+          })}
+      
         </div>
 
         <div className="modal-footer">
           <div className="total-price">
-            <span className="total"></span>
-            <span className="price"></span>
+            <span className="total">Итого:</span>
+            <span className="price">{FormatMoney(total)} </span>
           </div>
 
           <button className="button">Оформить заказ</button>
